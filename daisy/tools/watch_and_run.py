@@ -48,7 +48,7 @@ def main(argv=sys.argv):
             "benchmark.yml"))
 
     with IOTools.open_file("benchmark.yml") as inf:
-        config = yaml.load(inf)
+        config = yaml.load(inf, yaml.Loader)
 
     if "watch" not in config:
         raise ValueError("config file needs to contain a 'watch' section")

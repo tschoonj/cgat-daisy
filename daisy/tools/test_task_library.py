@@ -252,7 +252,7 @@ def main(argv=None):
             continue
         with IOTools.open_file(fn) as inf:
             raw_txt = inf.read()
-            test_config = yaml.load(raw_txt)
+            test_config = yaml.load(raw_txt, yaml.Loader)
             if test_config is None:
                 E.warn("file {} is empty".format(fn))
                 continue
@@ -266,7 +266,7 @@ def main(argv=None):
 
             # reload config with placeholders replaced
             test_config = yaml.load(
-                re.sub("DATADIR", data_directory, raw_txt))
+                re.sub("DATADIR", data_directory, raw_txt), yaml.Loader)
             if master_config is None:
                 master_config = test_config
             else:
